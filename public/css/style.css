@@ -1,0 +1,57 @@
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    /*  font-family: 'Raleway', sans-serif;*/
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+body {
+    padding-top: 50px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.news-pic {
+    padding: 2px;
+    border: 1px solid #91a6a6;
+    border-radius: 2px;
+}
+
+.nl-dates {
+    color: #748181;
+    font-family: Georgia, Times, serif;
+}
+
+.nl-dates a {
+    outline: none;
+    color: #006565;
+    cursor: pointer;
+    text-decoration: underline;
+}
+#thumb{
+    min-height: 350px;
+}
+/**************pagination***********/
+.gallery-bottom .pagination {
+    margin-top: 0;
+}
+
+.pagination > li > a, .pagination > li > span {
+    background-color: #ccc;
+    padding: 3px 9px;
+    color: #fff;
+    border: 0;
+}
+
+.pagination > li > a {
+    margin-right: 5px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #32c5d2;
+}
