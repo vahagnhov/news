@@ -53,7 +53,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return $article;
     }
 
     /**
@@ -130,6 +131,7 @@ class ArticleController extends Controller
             })
             ->addColumn('action', function ($article) {
                 return
+                    '<a onclick="showForm(' . $article->id . ')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> ' .
                     '<a onclick="editForm(' . $article->id . ')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> ' .
                     '<a onclick="deleteData(' . $article->id . ')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
             })

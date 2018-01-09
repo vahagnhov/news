@@ -70,3 +70,75 @@
         </div>
     </div>
 </div>
+
+<div class="modal" id="modal-form-show" tabindex="1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"> &times; </span>
+                    </button>
+                    <h3 class="modal-title" id="title_modal"></h3>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="show_id" name="id">
+
+                    <div class="form-group">
+                        <label for="show_title" class="col-md-3 control-label">Title</label>
+
+                        <div class="col-md-6">
+                            <input type="text" id="show_title" name="title" class="form-control" autofocus required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="show_description" class="col-md-3 control-label">Description</label>
+
+                        <div class="col-md-6">
+                            <input type="text" id="show_description" name="description" class="form-control" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="show_photo" class="col-md-3 control-label">Photo</label>
+
+                        <div class="col-md-6">
+                            <img id="show_photo" width="99" height="67" name="photo" src=""/>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="show_date" class="col-md-3 control-label">Date</label>
+
+                        <div class="col-md-6">
+                            <input type="text" id="show_date" name="date" class="form-control" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="show_url" class="col-md-3 control-label">Url</label>
+
+                        <div class="col-md-6">
+                            <input type="text" id="show_url" name="url" class="form-control" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-save" id="btn_submit">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

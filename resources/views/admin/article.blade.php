@@ -103,7 +103,31 @@
             $('.modal-title').text('Add Article');
         }
 
-
+        function showForm(id) {
+            save_method = 'show';
+            $('input[name=_method]').val('GET');
+            $('#modal-form-show form')[0].reset();
+            $.ajax({
+                url: "{{ url('admin/article') }}" + '/' + id,
+                type: "GET",
+                dataType: "JSON",
+                success: function (data) {
+                    console.log(data);
+                    $('#modal-form-show').modal('show');
+                    $('#title_modal').text('Show Article');
+                    $('#show_id').val(data.id);
+                    $('#show_title').val(data.title).attr('disabled','disabled');
+                    $('#show_description').val(data.description).attr('disabled','disabled');
+                    $('#show_photo').attr('src',"/upload/photo/"+data.photo);
+                    $('#show_date').val(data.date).attr('disabled','disabled');
+                    $('#show_url').val(data.url).attr('disabled','disabled');
+                    $('#btn_submit').hide();
+                },
+                error: function () {
+                    alert("Nothing Data");
+                }
+            });
+        }
         function editForm(id) {
             save_method = 'edit';
             $('input[name=_method]').val('PATCH');
