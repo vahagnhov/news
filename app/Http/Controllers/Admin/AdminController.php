@@ -22,34 +22,47 @@ class AdminController extends Controller
         ));
         $client->setClient($guzzleClient);
 
+
         for ($i = 1; $i <= 100; $i++) {
             $goutteClient = $client->request('GET', 'http://www.tert.am/en/news/' . $i);
-            $goutteClient->filter('#right-col div.news-list .news-blocks')->each(function ($node) {
+            $goutteClient->filter('.inner-content .list--max-height-none')->each(function ($node) {
                 $dbUrl = array();
                 $articles = DB::table('articles')->get();
-                $url = $node->filter('.news-blocks h4 a')->attr('href');
+                $url = $node->filter('.list__inner-box a')->attr('href');
                 foreach ($articles as $article) {
                     $dbUrl[] = $article->url;
                 }
                 if (!in_array($url, $dbUrl)) {
-                    $title = $node->filter('.news-blocks h4 a')->text();
-                    $description = $node->filter('.news-blocks p.nl-anot a')->text();
-                    $photo = $node->filter('.news-blocks a img')->attr('src');
-                    $dateAndCategory = $node->filter('.news-blocks p.nl-dates:not(a)')->text();
+                    $title = $node->filter('.list__inner-box span.list__title')->text();
+                    $description = $node->filter('.list__inner-box span.list__description')->text();
+                    $photo = $node->filter('.list__inner-box a img')->attr('src');
+                    $dateAndCategory = $node->filter('.list__inner-box span.list__date')->text();
+
                     $dateStr = substr($dateAndCategory, 11, 8);
                     $dateInt = strtotime($dateStr);
                     $date = date('Y-m-d', $dateInt);
+
                     $image = public_path('/upload/photo/' . $photo); // get all image names
+
                     if (file_exists($image)) {
-                        unlink($image); // delete image
+                        @unlink($image); // delete image
                     }
+
                     $extension = pathinfo($photo, PATHINFO_EXTENSION);
                     $imgName = str_random(10) . str_slug(substr($title, -7), '-') . "." . $extension;
-                    $img = file_get_contents($photo);
+                    $img = file_get_contents("https://www.tert.am".$photo);
+
+
                     $save = file_put_contents(public_path("upload/photo/" . $imgName), $img);
                     if ($save) {
                         DB::table('articles')->insert(
-                            ['title' => $title, 'description' => $description, 'photo' => $imgName, 'date' => $date, 'url' => $url]
+                            [
+                                'title' => $title,
+                                'description' => $description,
+                                'photo' => $imgName,
+                                'date' => $date,
+                                'url' => $url
+                            ]
                         );
                     }
 

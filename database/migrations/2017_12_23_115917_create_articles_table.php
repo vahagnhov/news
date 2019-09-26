@@ -20,8 +20,6 @@ class CreateArticlesTable extends Migration
             $table->string('photo')->unique();
             $table->date('date');
             $table->string('url')->unique();
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
             $table->timestamps();
         });
     }
